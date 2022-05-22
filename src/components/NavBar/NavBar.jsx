@@ -2,10 +2,10 @@ import React from 'react'
 
 export const NavBar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div id='header' className="container-fluid">
                 <a className="navbar-brand" href="/">
-                    Neo Books
+                    MonitoriasUniversity
                 </a>
                 <button
                     id="boton"
@@ -27,25 +27,16 @@ export const NavBar = () => {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/Libros">
-                                Libros
+                            <a className="nav-link active" href="/registro">
+                                Registro
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/Prestamos">
-                                Prestamos
+                            <a className="nav-link active" href="/consultas">
+                                Consultas
                             </a>
                         </li>
-                        <li className="nav-item">
-                            <a
-                                className="nav-link"
-                                href="/Login"
-                                tabindex="-1"
-                                aria-disabled="true"
-                            >
-                                Iniciar Sesion
-                            </a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
