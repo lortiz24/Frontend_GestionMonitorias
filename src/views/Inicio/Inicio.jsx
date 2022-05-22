@@ -6,29 +6,32 @@ export const Inicio = () => {
   return (
     <>
       <NavBar></NavBar>
+      
       <div className="container mt-5">
-        <div class="row">
-          <div class="col-sm-6" >
-            <div class="card" >
-              <div class="card-body">
-                <h5 class="card-title">Registro de datos</h5>
-                <p class="card-text">Aqui podra hacer registro de nuevos minitores asi como tambien asignar nuevas monitorias  </p>
-                <div className="col-sm-15 mb-4" style={{ height: "200rem;" }}>
-                  <img width="912" height="708" className="img-thumbnail" src={Registro} alt="Teclado" />
+        <h1 className="text-center">Sistema de gestion de monitorias</h1>
+        <hr />
+        <div className="row">
+          <div className="col-sm-6" >
+            <div className="card" >
+              <div className="card-body">
+                <h5 className="card-title">Registro de datos</h5>
+                <p className="card-text">Aqui podra hacer registro de nuevos minitores asi como tambien asignar nuevas monitorias  </p>
+                <div className="col-sm-15 mb-4">
+                  <img className="img-thumbnail" src={Registro} alt="Teclado" />
                 </div>
-                <a href="/registro" class="btn btn-primary">Registrar</a>
+                <a href="/registro" className="btn btn-primary">Registrar</a>
               </div>
             </div>
           </div>
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Consulta de datos</h5>
-                <p class="card-text">Aqui podra hacer consultas de monitorias ya asignadas y de los monitores registrados hasta el momento</p>
-                <div className="col-sm-15 mb-4" style={{ height: "200rem;" }}>
+          <div className="col-sm-6">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Consulta de datos</h5>
+                <p className="card-text">Aqui podra hacer consultas de monitorias ya asignadas y de los monitores registrados hasta el momento</p>
+                <div className="col-sm-15 mb-4" >
                   <img className="img-thumbnail" src={Lupa} alt="Teclado" />
                 </div>
-                <a href="/consultas" class="btn btn-primary">Consultar</a>
+                <a href="/consultas" className="btn btn-primary">Consultar</a>
               </div>
             </div>
           </div>
