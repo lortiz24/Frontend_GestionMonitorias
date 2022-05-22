@@ -1,16 +1,21 @@
 import React from 'react'
 import { NavBar } from '../../components/NavBar/NavBar'
+import Registro from '../../assets/Registro.jpg'
+import Lupa from '../../assets/Lupa.jpg'
 export const Inicio = () => {
   return (
     <>
-    <NavBar></NavBar>
-    <div className="container mt-5">
+      <NavBar></NavBar>
+      <div className="container mt-5">
         <div class="row">
-          <div class="col-sm-6">
-            <div class="card">
+          <div class="col-sm-6" >
+            <div class="card" >
               <div class="card-body">
                 <h5 class="card-title">Registro de datos</h5>
                 <p class="card-text">Aqui podra hacer registro de nuevos minitores asi como tambien asignar nuevas monitorias  </p>
+                <div className="col-sm-15 mb-4" style={{ height: "200rem;" }}>
+                  <img width="912" height="708" className="img-thumbnail" src={Registro} alt="Teclado" />
+                </div>
                 <a href="/registro" class="btn btn-primary">Registrar</a>
               </div>
             </div>
@@ -20,6 +25,9 @@ export const Inicio = () => {
               <div class="card-body">
                 <h5 class="card-title">Consulta de datos</h5>
                 <p class="card-text">Aqui podra hacer consultas de monitorias ya asignadas y de los monitores registrados hasta el momento</p>
+                <div className="col-sm-15 mb-4" style={{ height: "200rem;" }}>
+                  <img className="img-thumbnail" src={Lupa} alt="Teclado" />
+                </div>
                 <a href="/consultas" class="btn btn-primary">Consultar</a>
               </div>
             </div>
