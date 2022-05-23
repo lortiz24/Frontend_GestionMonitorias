@@ -3,16 +3,18 @@ import { NavBar } from "../NavBar/NavBar.jsx";
 
 export const FormularioRegistro = () => {
     const [monitores, setMonitores] = React.useState([])
-    const [datos, setDatos] = React.useState({
-        idMonitorias: null,
-        id_monitor: null,
-        materia: "",
-        fecha: "",
-        salon: "",
+    const [datosForm, setDatosForm] = React.useState({
+        id_monitor: 0,
+        materia: '',
+        fecha: '',
+        salon: '',
     });
+
     React.useEffect(() => {
         loadMonitores()
     }, [])
+
+
     const loadMonitores = async () => {
         const response = await fetch(`http://localhost:4000/monitores`);
         const data = await response.json();
@@ -21,7 +23,27 @@ export const FormularioRegistro = () => {
 
     };
 
+    const handleChange = (e) => {
+        setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
+    };
 
+    const sendHanlder = async (e) => {
+        e.preventDefault();
+        await fetch('http://localhost:4000/monitorias', {
+            method: 'POST',
+            body: JSON.stringify(datosForm),
+            headers: { "Content-Type": 'application/json' }
+        });
+
+        setDatosForm({
+            id_monitor: 0,
+            materia: '',
+            fecha: '',
+            salon: '',
+        })
+
+
+    };
     return (
         <>
             <NavBar></NavBar>
@@ -31,14 +53,14 @@ export const FormularioRegistro = () => {
                 <hr />
                 <div className="row">
                     <div>
-                        <form action="">
+                        <form onSubmit={sendHanlder}>
 
                             <select
-                                name="Nombremonitor"
-                                /* value={datosForm.semestre} */
+                                name="id_monitor"
+                                value={datosForm.id_monitor}
                                 className="form-select form-select-sm mb-2 mt-3"
                                 aria-label=".form-select-sm example"
-                            /* onChange={handleChange} */
+                                onChange={handleChange}
                             >
                                 <option value="0" disabled>
                                     Seleccione el monitor
@@ -52,22 +74,27 @@ export const FormularioRegistro = () => {
                                 className="form-control mb-2"
                                 type="text"
                                 placeholder="Ingrese Materia"
-                                onChange={(e) =>
-                                    setDatos({ ...datos, [e.target.name]: e.target.value })
-                                }
-                                value={datos.materia}
+                                onChange={handleChange}
+                                value={datosForm.materia}
                             />
-
+                            <input
+                                name="fecha"
+                                className="form-control mb-2"
+                                type="date"
+                                onChange={handleChange}
+                                value={datosForm.fecha}
+                            />
                             <input
                                 name="salon"
                                 className="form-control mb-2"
                                 type="text"
                                 placeholder="Ingrese el salon"
-                                onChange={(e) =>
-                                    setDatos({ ...datos, [e.target.name]: e.target.value })
-                                }
-                                value={datos.materia}
+                                onChange={handleChange}
+                                value={datosForm.salon}
                             />
+                            <button type='submit' onClick={sendHanlder} className="btn btn-primary col-12 mt-2" >
+                                Enviar
+                            </button>
                         </form>
                     </div>
                 </div>
