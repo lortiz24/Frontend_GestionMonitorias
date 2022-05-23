@@ -86,9 +86,9 @@ export const MonitoriasC = () => {
                     </div>
 
                     <div className="d-flex justify-content-between">
-                      <button onClick={() => { eliminarMonitoria(item.idMonitorias) }} className="btn btn-warning">Editar</button>
-                      <button onClick={() => { eliminarMonitoria(item.idMonitorias) }} className="btn btn-danger">Eliminar</button>
+                      {/* <button onClick={() => { eliminarMonitoria(item.idMonitorias) }} className="btn btn-warning">Editar</button> */}          
                       <button onClick={() => { notificarMonitorias(devolverMonitor(item.id_monitor).email, item.materia, item.fecha, item) }} className="btn btn-primary">Notificar al monitor</button>
+                      <button onClick={() => { eliminarMonitoria(item.idMonitorias) }} className="btn btn-danger">Eliminar</button>
                     </div>
                   </div>
                 </div>

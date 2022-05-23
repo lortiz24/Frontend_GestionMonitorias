@@ -67,7 +67,7 @@ export const MonitoresC = () => {
 
 
                   <div className="d-flex justify-content-between col-4">
-                    <button className="btn btn-warning">Editar</button>
+                    {/* <button className="btn btn-warning">Editar</button> */}
                     <button
                       onClick={() => eliminarMonitor(item.idMonitores, item.foto_name)}
                       className="btn btn-danger"

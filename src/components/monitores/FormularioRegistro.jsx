@@ -21,6 +21,8 @@ export const FormularioRegistro = () => {
     const handleChange = (e) => {
         setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
     };
+
+
     const selectedHanlder = (e) => {
         setFile(e.target.files[0]);
         console.log(file);
@@ -30,6 +32,7 @@ export const FormularioRegistro = () => {
         e.preventDefault();
         if (!file) {
             alert("Debes subir un archivo");
+            return
         }
 
         //Cambiar los espacios por $$
