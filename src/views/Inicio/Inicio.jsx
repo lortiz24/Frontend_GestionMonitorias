@@ -13,11 +13,11 @@ export const Inicio = () => {
         <div className="row">
           <div className="col-sm-6" >
             <div className="card" >
-              <div className="card-body">
+              <div className="card-body row">
                 <h5 className="card-title">Registro de datos</h5>
                 <p className="card-text">Aqui podra hacer registro de nuevos minitores asi como tambien asignar nuevas monitorias  </p>
-                <div className="col-sm-15 mb-4">
-                  <img className="img-thumbnail" src={Registro} alt="Teclado" />
+                <div className="col-sm-15 mb-4 d-flex justify-content-center">
+                  <img className="img-thumbnail" src={Registro} alt="Teclado" style={{width:'30rem',height:'20rem'}}/>
                 </div>
                 <a href="/registro" className="btn btn-primary">Registrar</a>
               </div>
@@ -25,11 +25,11 @@ export const Inicio = () => {
           </div>
           <div className="col-sm-6">
             <div className="card">
-              <div className="card-body">
+              <div className="card-body row">
                 <h5 className="card-title">Consulta de datos</h5>
                 <p className="card-text">Aqui podra hacer consultas de monitorias ya asignadas y de los monitores registrados hasta el momento</p>
-                <div className="col-sm-15 mb-4" >
-                  <img className="img-thumbnail" src={Lupa} alt="Teclado" />
+                <div className="col-sm-15 mb-4 d-flex justify-content-center" >
+                  <img className="img-thumbnail" src={Lupa} alt="Teclado" style={{width:'30rem',height:'20rem'}}/>
                 </div>
                 <a href="/consultas" className="btn btn-primary">Consultar</a>
               </div>

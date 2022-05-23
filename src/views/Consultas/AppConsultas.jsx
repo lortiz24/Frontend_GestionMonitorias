@@ -16,8 +16,8 @@ export const AppConsultas = () => {
                             <div className="card-body row">
                                 <h5 className="card-title">Monitores</h5>
                                 <p className="card-text">Aqui podra consultar lo monitores registrados hasta el momento</p>
-                                <div className="col-sm-15 mb-4">
-                                    <img className="img-thumbnail" src={monitor} alt="Monitor" />
+                                <div className="col-sm-15 mb-4 d-flex justify-content-center">
+                                    <img style={{width:'30rem',height:'20rem'}} className="img-thumbnail" src={monitor} alt="Monitor" />
                                 </div>
                                 <a href="/consultas/monitores" className="btn btn-primary">Consultar monitores</a>
                             </div>
@@ -28,8 +28,8 @@ export const AppConsultas = () => {
                             <div className="card-body row">
                                 <h5 className="card-title">Monitorias</h5>
                                 <p className="card-text">Aqui podra consultar las monitorias hasta el momento</p>
-                                <div className="col-sm-15 mb-4">
-                                    <img className="img-thumbnail" src={monitorias} alt="Monitoria" />
+                                <div className="col-sm-15 mb-4 d-flex justify-content-center">
+                                    <img style={{width:'30rem',height:'20rem'}} className="img-thumbnail" src={monitorias} alt="Monitoria" />
                                 </div>
                                 <a href="/consultas/monitorias" className="btn btn-primary">Consultar monitorias</a>
                             </div>

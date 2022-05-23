@@ -29,12 +29,16 @@ export const FormularioRegistro = () => {
 
     const sendHanlder = async (e) => {
         e.preventDefault();
-        await fetch('http://localhost:4000/monitorias', {
+        const response=await fetch('http://localhost:4000/monitorias', {
             method: 'POST',
             body: JSON.stringify(datosForm),
             headers: { "Content-Type": 'application/json' }
         });
-
+        const res = await response.json();
+        
+        if (res.message==='Succesful') {
+            alert('Se guardo correctamente')
+        }
         setDatosForm({
             id_monitor: 0,
             materia: '',
@@ -52,7 +56,7 @@ export const FormularioRegistro = () => {
                 <h2 className="text-center">Registro de monitorias</h2>
                 <hr />
                 <div className="row">
-                    <div>
+                    <div className="col-5">
                         <form onSubmit={sendHanlder}>
 
                             <select
@@ -62,7 +66,7 @@ export const FormularioRegistro = () => {
                                 aria-label=".form-select-sm example"
                                 onChange={handleChange}
                             >
-                                <option value="0" disabled>
+                                <option key={0} value="0" disabled>
                                     Seleccione el monitor
                                 </option>
                                 {monitores.map((item) => (

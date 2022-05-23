@@ -31,6 +31,8 @@ export const FormularioRegistro = () => {
         if (!file) {
             alert("Debes subir un archivo");
         }
+
+        //Cambiar los espacios por $$
         const expRegular = /(\s{2,})/g;
         const body={
             nombre:datosForm.nombre.trim().replace(expRegular,' ').split(' ').join('$$'),
@@ -41,22 +43,26 @@ export const FormularioRegistro = () => {
             telefono:datosForm.telefono.trim().replace(expRegular,''),
             email:datosForm.email.trim().replace(expRegular,''),
         }
-        
-        
-        
-        
+        //imagen a formdata y enviar 
         const formdata = new FormData();
-
         formdata.append("image", file);
+
         fetch(`http://localhost:4000/monitores/${body.nombre}/${body.apellidos}/${body.programAcademica}/${body.semestre}/${body.cedula}/${body.telefono}/${body.email}`, {
             method: "POST",
             body: formdata,
         })
             .then((res) => res.json())
-            .then((res) => console.log(res))
+            .then((res) => {
+                if (res.message==='Succesful') {
+                    alert('Se guardo correctamente')
+                }
+            })
             .catch((err) => {
                 console.log(err);
             });  
+        
+            
+        //Setear datos
         setDatosForm({
             nombre: "",
             apellidos: "",
@@ -112,11 +118,11 @@ export const FormularioRegistro = () => {
                                 aria-label=".form-select-sm example"
                                 onChange={handleChange}
                             >
-                                <option value="0" disabled>
+                                <option key={0} value="0" disabled>
                                     Seleccione el semestre
                                 </option>
                                 {semestres.map((item) => (
-                                    <option value={item}>Semestre {item}</option>
+                                    <option key={item} value={item}>Semestre {item}</option>
                                 ))}
                             </select>
                             <input
@@ -161,9 +167,7 @@ export const FormularioRegistro = () => {
                         </form>
                     </div>
 
-                    <div className="col-5">
-                        {/* Aqui va una imagen */}
-                    </div>
+                    
                 </div>
             </div>
         </>
