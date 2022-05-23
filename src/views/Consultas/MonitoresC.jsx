@@ -62,15 +62,19 @@ export const MonitoresC = () => {
                   </div>
 
                   <div className="col-sm-15 mb-4 d-flex justify-content-center">
-                    <img style={{ width: '30rem', height: '20rem' }} className="img-thumbnail" src={'http://localhost:4000/'+item.foto_name} alt="Monitor" />
+                    <img style={{ width: '30rem', height: '20rem' }} className="img-thumbnail" src={'http://localhost:4000/' + item.foto_name} alt="Monitor" />
                   </div>
-                  <button className="btn btn-warning">Editar</button>
-                  <button
-                    onClick={() => eliminarMonitor(item.idMonitores, item.foto_name)}
-                    className="btn btn-danger"
-                  >
-                    Eliminar
-                  </button>
+
+
+                  <div className="d-flex justify-content-between col-4">
+                    <button className="btn btn-warning">Editar</button>
+                    <button
+                      onClick={() => eliminarMonitor(item.idMonitores, item.foto_name)}
+                      className="btn btn-danger"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

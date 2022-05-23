@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavBar } from '../../components/NavBar/NavBar';
-
+import generateMonitoria from '../../configs/email'
 export const MonitoriasC = () => {
   const [monitoriasList, setMonitoriasList] = React.useState([]);
   const [monitores, setMonitores] = React.useState([])
@@ -32,8 +32,22 @@ export const MonitoriasC = () => {
     console.log(data.body);
     setMonitores(data.body)
   }
+  const notificarMonitorias = async (emailMonitor, materia, fecha) => {
 
-  const devolverNombre = (id) => {
+    let body = generateMonitoria(emailMonitor, materia, fecha);
+    const response = await fetch('http://localhost:4000/email', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { "Content-Type": 'application/json' }
+    });
+    const res = await response.json();
+    
+    if (res.message === 'Ok') {
+      alert('Se envio el correo correctamente')
+    }
+    
+  }
+  const devolverMonitor = (id) => {
 
     if (monitores.length !== 0) {
       return monitores.find(item => item.idMonitores === id)
@@ -53,7 +67,7 @@ export const MonitoriasC = () => {
                 <div className="card mt-2 col-sm-6 ">
                   <div className="card-body">
                     <div className="card">
-                      <h4>Monitor: {monitores.length === 0 ? '' : `${devolverNombre(item.id_monitor).nombre} ${devolverNombre(item.id_monitor).apellidos}`} </h4>
+                      <h4>Monitor: {monitores.length === 0 ? '' : `${devolverMonitor(item.id_monitor).nombre} ${devolverMonitor(item.id_monitor).apellidos}`} </h4>
                     </div>
                     <div className="card">
                       <h4>Materia: {item.materia}</h4>
@@ -70,8 +84,12 @@ export const MonitoriasC = () => {
                     <div className="col-sm-15 mb-4">
 
                     </div>
-                    <a href="/registro/monitores" className="btn btn-warning">Editar</a>
-                    <button onClick={() => { eliminarMonitoria(item.idMonitorias) }} className="btn btn-danger">Eliminar</button>
+
+                    <div className="d-flex justify-content-between">
+                      <button onClick={() => { eliminarMonitoria(item.idMonitorias) }} className="btn btn-warning">Editar</button>
+                      <button onClick={() => { eliminarMonitoria(item.idMonitorias) }} className="btn btn-danger">Eliminar</button>
+                      <button onClick={() => { notificarMonitorias(devolverMonitor(item.id_monitor).email, item.materia, item.fecha, item) }} className="btn btn-primary">Notificar al monitor</button>
+                    </div>
                   </div>
                 </div>
 
