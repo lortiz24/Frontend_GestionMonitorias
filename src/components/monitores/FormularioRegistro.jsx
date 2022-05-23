@@ -2,12 +2,12 @@ import React from "react";
 export const FormularioRegistro = () => {
     const [file, setFile] = React.useState(null);
     const [semestres, setSemestres] = React.useState([]);
-    (() => {
+    const startSelect=() => {
         setSemestres([
             1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
         ])
-    })();
-    const [objeto, setObjeto] = React.useState({
+    }
+    const [datosForm, setDatosForm] = React.useState({
         nombre: "",
         apellidos: "",
         programAcademica: "",
@@ -18,7 +18,7 @@ export const FormularioRegistro = () => {
     });
 
     const handleChange = (e) => {
-        setObjeto({ ...objeto, [e.target.name]: e.target.value });
+        setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
     };
     const selectedHanlder = (e) => {
         setFile(e.target.files[0]);
@@ -30,11 +30,24 @@ export const FormularioRegistro = () => {
         if (!file) {
             alert("Debes subir un archivo");
         }
-
+        const expRegular = /(\s{2,})/g;
+        const body={
+            nombre:datosForm.nombre.trim().replace(expRegular,' ').split(' ').join('$$'),
+            apellidos:datosForm.apellidos.trim().replace(expRegular,' ').split(' ').join('$$'),
+            programAcademica:datosForm.programAcademica.trim().replace(expRegular,' ').split(' ').join('$$'),
+            semestre:datosForm.semestre.trim().replace(expRegular,' ').split(' ').join('$$'),
+            cedula:datosForm.cedula.trim().replace(expRegular,''),
+            telefono:datosForm.telefono.trim().replace(expRegular,''),
+            email:datosForm.email.trim().replace(expRegular,''),
+        }
+        
+        
+        
+        
         const formdata = new FormData();
 
         formdata.append("image", file);
-        fetch(`http://localhost:4000/monitores/${1}/images`, {
+        fetch(`http://localhost:4000/monitores/${body.nombre}/${body.apellidos}/${body.programAcademica}/${body.semestre}/${body.cedula}/${body.telefono}/${body.email}`, {
             method: "POST",
             body: formdata,
         })
@@ -42,10 +55,14 @@ export const FormularioRegistro = () => {
             .then((res) => console.log(res))
             .catch((err) => {
                 console.log(err);
-            });
+            });  
         setFile(null);
-        document.getElementById("fileinput").value = null;
+        document.getElementById("customFileLang").value = null;
     };
+
+    React.useEffect(()=>{
+        startSelect()
+    },[])
     return (
         <>
             <div className="container mt-5">
@@ -56,7 +73,7 @@ export const FormularioRegistro = () => {
                         <form onSubmit={sendHanlder} className="form-control">
                             <input
                                 name="nombre"
-                                value={objeto.nombre}
+                                value={datosForm.nombre}
                                 className="form-control mb-2 mt-1"
                                 type="text"
                                 placeholder="Ingrese Nombre"
@@ -64,7 +81,7 @@ export const FormularioRegistro = () => {
                             />
                             <input
                                 name="apellidos"
-                                value={objeto.apellidos}
+                                value={datosForm.apellidos}
                                 className="form-control mb-2 mt-3"
                                 type="text"
                                 placeholder="Ingrese Apellido"
@@ -72,15 +89,15 @@ export const FormularioRegistro = () => {
                             />
                             <input
                                 name="programAcademica"
-                                value={objeto.programAcademica}
+                                value={datosForm.programAcademica}
                                 className="form-control mb-2 mt-3"
                                 type="text"
                                 placeholder="Ingrese programa academico"
                                 onChange={handleChange}
                             />
                             <select
-                                name="programAcademica"
-                                value={objeto.semestre}
+                                name="semestre"
+                                value={datosForm.semestre}
                                 className="form-select form-select-sm mb-2 mt-3"
                                 aria-label=".form-select-sm example"
                                 onChange={handleChange}
@@ -89,12 +106,12 @@ export const FormularioRegistro = () => {
                                     Seleccione el semestre
                                 </option>
                                 {semestres.map((item) => (
-                                    <option value="item">Semestre {item}</option>
+                                    <option value={item}>Semestre {item}</option>
                                 ))}
                             </select>
                             <input
                                 name="cedula"
-                                value={objeto.cedula}
+                                value={datosForm.cedula}
                                 className="form-control mb-2 mt-3"
                                 type="text"
                                 placeholder="Ingrese cedula"
@@ -102,7 +119,7 @@ export const FormularioRegistro = () => {
                             />
                             <input
                                 name="telefono"
-                                value={objeto.telefono}
+                                value={datosForm.telefono}
                                 className="form-control mb-2 mt-3"
                                 type="text"
                                 placeholder="Ingrese telefono"
@@ -110,7 +127,7 @@ export const FormularioRegistro = () => {
                             />
                             <input
                                 name="email"
-                                value={objeto.email}
+                                value={datosForm.email}
                                 className="form-control mb-2 mt-3"
                                 type="text"
                                 placeholder="Ingrese email"
