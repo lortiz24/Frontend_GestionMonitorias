@@ -1,9 +1,12 @@
 import React from "react";
 export const FormularioRegistro = () => {
     const [file, setFile] = React.useState(null);
-    const [semestres, setSemestres] = React.useState([
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    ]);
+    const [semestres, setSemestres] = React.useState([]);
+    (() => {
+        setSemestres([
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        ])
+    })();
     const [objeto, setObjeto] = React.useState({
         nombre: "",
         apellidos: "",
@@ -49,7 +52,7 @@ export const FormularioRegistro = () => {
                 <h1 className="text-center">Registro de monitores</h1>
                 <hr />
                 <div className="row">
-                    <div className= "col-5">
+                    <div className="col-5">
                         <form onSubmit={sendHanlder} className="form-control">
                             <input
                                 name="nombre"
