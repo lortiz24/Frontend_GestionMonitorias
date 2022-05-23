@@ -2,11 +2,6 @@ import React from "react";
 export const FormularioRegistro = () => {
     const [file, setFile] = React.useState(null);
     const [semestres, setSemestres] = React.useState([]);
-    const startSelect=() => {
-        setSemestres([
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        ])
-    }
     const [datosForm, setDatosForm] = React.useState({
         nombre: "",
         apellidos: "",
@@ -16,6 +11,12 @@ export const FormularioRegistro = () => {
         telefono: "",
         email: "",
     });
+    const startSelect=() => {
+        setSemestres([
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        ])
+    }
+    
 
     const handleChange = (e) => {
         setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
@@ -56,6 +57,15 @@ export const FormularioRegistro = () => {
             .catch((err) => {
                 console.log(err);
             });  
+        setDatosForm({
+            nombre: "",
+            apellidos: "",
+            programAcademica: "",
+            semestre: 0,
+            cedula: "",
+            telefono: "",
+            email: "",
+        })
         setFile(null);
         document.getElementById("customFileLang").value = null;
     };

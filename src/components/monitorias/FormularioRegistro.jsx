@@ -2,8 +2,7 @@ import React from "react";
 import { NavBar } from "../NavBar/NavBar.jsx";
 
 export const FormularioRegistro = () => {
-
-
+    const [monitores, setMonitores] = React.useState([])
     const [datos, setDatos] = React.useState({
         idMonitorias: null,
         id_monitor: null,
@@ -11,6 +10,17 @@ export const FormularioRegistro = () => {
         fecha: "",
         salon: "",
     });
+    React.useEffect(() => {
+        loadMonitores()
+    }, [])
+    const loadMonitores = async () => {
+        const response = await fetch(`http://localhost:4000/monitores`);
+        const data = await response.json();
+        setMonitores(data.body)
+        monitores.map(item => console.log(item.nombre))
+
+    };
+
 
     return (
         <>
@@ -22,6 +32,21 @@ export const FormularioRegistro = () => {
                 <div className="row">
                     <div>
                         <form action="">
+
+                            <select
+                                name="Nombremonitor"
+                                /* value={datosForm.semestre} */
+                                className="form-select form-select-sm mb-2 mt-3"
+                                aria-label=".form-select-sm example"
+                            /* onChange={handleChange} */
+                            >
+                                <option value="0" disabled>
+                                    Seleccione el monitor
+                                </option>
+                                {monitores.map((item) => (
+                                    <option key={item.idMonitores} value={item.idMonitores}>{item.nombre} {item.apellidos}</option>
+                                ))}
+                            </select>
                             <input
                                 name="materia"
                                 className="form-control mb-2"
