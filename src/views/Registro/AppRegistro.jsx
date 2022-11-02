@@ -1,7 +1,7 @@
 import React from "react";
 import { NavBar } from "../../components/NavBar/NavBar";
-import monitor from '../../assets/Monitor.png'
-import monitorias from '../../assets/Monitoria.jpg'
+import monitor from '../../assets/MonitorPersona.jpg'
+import monitorias from '../../assets/Libros.jpg'
 export const AppRegistro = () => {
   return (
     <>

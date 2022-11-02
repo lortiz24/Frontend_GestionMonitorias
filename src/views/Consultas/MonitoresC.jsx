@@ -13,6 +13,7 @@ export const MonitoresC = () => {
   React.useEffect(() => {
     loadMonitores();
     setConstrol(false)
+    console.log('object');
   }, [constrol]);
   const eliminarMonitor = async (idMonitores, fotoname) => {
     console.log(idMonitores);
